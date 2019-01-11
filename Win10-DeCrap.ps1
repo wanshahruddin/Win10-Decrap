@@ -1,6 +1,6 @@
 <#
 .SYNOPSIS
-    Remove unnecessary apps and tweaks Windows 10 for the best perfomance.
+    Remove unnecessary apps and tweaks Windows 10 for the best perfomance/privacy.
 .DESCRIPTION
     Decrapify Windows 10
 .PARAMETER TempFolders
@@ -15,12 +15,13 @@
     Execute manually using powershell after fresh install of Windows 10.  
 .NOTES
     Author:             Wan Shahruddin
-    Why?:               I am bored af now
+    Why?:               Setting up a new Windows 10 computer takes so much time. This script's purpose is to shorten and automate a lot of the tasks
+                        as well as tweaking some of the computer settings for privacy and performance purpose. 
 #>
 
 Params (
     $TempFolders = @("C:\Windows\Temp\*","C:\Users\*\Appdata\Local\Temp\*")
-    $CertificateLocation = "UNC File Path eg \\192.168.1.5\ShareFolder\Certificate.pem"
+    $CertificateLocation = "UNC File Path eg \\192.168.1.5\SharedFolder\Certificate.pem"
 )
 
 ############################
@@ -43,14 +44,8 @@ If (!([Security.Principal.WindowsPrincipal][Security.Principal.WindowsIdentity]:
     #Install CCleaner
     choco install ccleaner -y
 
-    #Install Crystal Disk Info
-    choco install crystaldiskinfo -y
-
     #Install Google Chrome
     choco install googlechrome -y
-
-    #Install PeaZip
-    choco install peazip -y
 
     #Install TeamViewer
     choco install teamviewer -y 
@@ -170,7 +165,7 @@ If (!([Security.Principal.WindowsPrincipal][Security.Principal.WindowsIdentity]:
         <DefaultLayoutOverride>
             <StartLayoutCollection>
               <defaultlayout:StartLayout GroupCellWidth="6" xmlns:defaultlayout="http://schemas.microsoft.com/Start/2014/FullDefaultLayout">
-                <start:Group Name="Cuckoo International" xmlns:start="http://schemas.microsoft.com/Start/2014/StartLayout">
+                <start:Group Name="Group Name" xmlns:start="http://schemas.microsoft.com/Start/2014/StartLayout">
                   <start:DesktopApplicationTile Size="2x2" Column="0" Row="0" DesktopApplicationLinkPath="%APPDATA%\Microsoft\Windows\Start Menu\Programs\System Tools\File Explorer.lnk" />
                 </start:Group>        
               </defaultlayout:StartLayout>
@@ -211,7 +206,7 @@ If (!([Security.Principal.WindowsPrincipal][Security.Principal.WindowsIdentity]:
         Set-ItemProperty -Path "HKLM:\SYSTEM\CurrentControlSet\Control\Session Manager\Environment" -Name TMP "C:\Temp"
     
     #Rename Computer
-    Write-Host "Enter New PC Name (Cuckoo-PC-???)"
+    Write-Host "Enter New PC Name (Example-1-2)"
     $computerName = Read-Host
     Rename-Computer -NewName $computerName
 
