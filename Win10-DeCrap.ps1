@@ -211,4 +211,4 @@ If (!([Security.Principal.WindowsPrincipal][Security.Principal.WindowsIdentity]:
     Rename-Computer -NewName $computerName
 
     Read-Host "Press enter key to exit..."
-    exit
+exit
